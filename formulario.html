@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
+    <title>Ayudanos a ayudar</title>
+  </head>
+  <body data-spy="scroll" data-target="#navbar" data-offset="57">
+    <!-- Header -->
+    <nav id="header" class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+           La Casita de Noe
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar">
+          <ul class="navbar-nav ml-auto">  
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Fondo de Donación</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- /Header -->
+
+    <!-- Main -->    
+    </main>
+       <div class="row">
+          <div class="col text-uppercase text-center">
+            <h1>Fondo de Donaciones</h1>
+            <h2>Ayudanos a Ayudar - Fondo de compromiso de Donación</h2>
+          </div>
+        </div>
+          <div class="row">
+          <div class="col col-md-10 offset-md-1 col-lg-8 offset-lg-2 pt-2">
+            <form name="ffondo">
+              <div class="form-row">
+                <div class="form-group col-12 col-md-6">
+                  <input type="text" name="nombre" class="form-control" placeholder="Nombre">
+                </div>
+                <div class="form-group col-12 col-md-6">
+                  <input type="text" name="apellido" class="form-control" placeholder="Apellido">
+                </div>
+                <div class="form-group col-12 col-md-6">
+                  <input type="text" name="correo" class="form-control" placeholder="Correo">
+                </div>
+                <div class="form-group col-12 col-md-6">
+                  <input type="text" name= "celular" class="form-control" placeholder="Celular">
+                </div>
+                <div class="form-group col-12 col-md-12">
+                  <input type="email" name="compromiso" class="form-control" placeholder="Compromiso $">
+                </div>                        
+              </div>
+           
+              <div class="form-row">
+                <div class="col">
+                  <button type="reset" class="btn btn-codo btn-block">Borrar</button>
+                </div>
+                <div class="col">
+                  <button type="button" id="botonCalcular" onclick="validar_envia()" class="btn btn-codo btn-block">Enviar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      //Validaciones
+      function validar_envia() {
+          //valida nombre
+          if (document.ffondo.nombre.value.length == 0) {
+              alert("Tiene que ingresar su Nombre")
+              document.ffondo.nombre.focus()
+              return 0;
+          }
+          //valida apellido
+          if (document.ffondo.apellido.value.length == 0) {
+              alert("Tiene que ingresar su Apellido")
+              document.ffondo.apellido.focus()
+              return 0;
+          }
+          //valida correo
+          re=/^([\da-z_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
+        	if(!re.exec(document.ffondo.correo.value)){
+	            alert("El correo es incorrecto.")
+              document.ffondo.correo.focus()
+              return 0;
+          }
+          //valida celular
+          celu= document.ffondo.celular.value
+          celu = validarEntero(celu)
+          document.ffondo.celular.value = celu
+          if (celu == "") {
+              alert("Tiene que ingresar su celular")
+              document.ffondo.celular.focus()
+              return 0;
+          } else {
+              if (document.ffondo.celular.value.length < 10) {
+                  alert("El celular debe tener 10 dígitos incluyendo el código de zona.")
+                  document.ffondo.celular.focus()
+                  return 0;
+              }
+            }
+          //valida compromiso
+          donacion= document.ffondo.compromiso.value
+          donacion = validarEntero(donacion)
+          document.ffondo.compromiso.value = donacion
+          if (donacion == "") {
+              alert("Tiene que ingresar su compromiso de donación")
+              document.ffondo.compromiso.focus()
+              return 0;
+              }
+        
+          //el formulario se envia
+          alert("Muchas gracias por ayudarnos a ayudar!!!");
+          document.ffondo.submit();
+        
+            }
+
+      function validarEntero(valor) {
+          //intento convertir a entero.
+          //si era un entero no le afecta, si no lo era lo intenta convertir
+          valor = parseInt(valor)
+
+          //Compruebo si es un valor numérico
+          if (isNaN(valor)) {
+              //entonces (no es numero) devuelvo el valor cadena vacia
+              return ""
+          } else {
+              //En caso contrario (Si era un número) devuelvo el valor
+              return valor
+          }
+      }
+  </script>
+  
+  </body>
+</html>
